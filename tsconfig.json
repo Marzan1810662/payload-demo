@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    // "paths": {
+    //   // Tell TS where to find your generated types
+    //   // This is the default location below
+    //   "payload/generated-types": [
+    //     "./src/payload-types.ts"
+    //   ]
+    // },
+    "allowJs": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "jsx": "react"
+  },
+  "include": [
+    "src",
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+  ],
+  "ts-node": {
+    "transpileOnly": true,
+  }
+}
