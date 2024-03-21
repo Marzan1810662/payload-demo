@@ -15,10 +15,66 @@ export default buildConfig({
 
   collections: [
     Customers,
-    Users
+    Users,
+    {
+      slug: 'pages',
+      fields: [
+        {
+          name: 'title',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'content',
+          type: 'richText',
+          required: true,
+        },
+        {
+          name: 'nav',
+          type: 'array',
+          fields: [
+            {
+              name: 'page',
+              type: 'relationship',
+              relationTo: 'pages',
+            },
+          ],
+        }
+      ],
+    }
   ],
   globals: [
-
+    {
+      slug: 'header',
+      fields: [
+        {
+          name: 'nav',
+          type: 'array',
+          fields: [
+            {
+              name: 'page',
+              type: 'relationship',
+              relationTo: 'pages',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      slug: 'header1',
+      fields: [
+        {
+          name: 'nav1',
+          type: 'array',
+          fields: [
+            {
+              name: 'page',
+              type: 'text',
+            },
+          ],
+        },
+      ],
+    },
   ],
 
   typescript: {
@@ -29,7 +85,7 @@ export default buildConfig({
   },
   express: {
     json: {
-      limit: 400000,
+      limit: 400000, //4MB
     },
   },
   upload: {
