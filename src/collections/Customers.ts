@@ -17,15 +17,32 @@ const Customers: CollectionConfig = {
             name: 'First Name',
             type: 'text',
             label: 'First Name',
-            required: true
+            required: true,
+            hooks: {
+                beforeChange: [({value}) => {
+                    // Trim whitespace and convert to lowercase
+                    return value.trim().toLowerCase()
+                  }]
+            }
         },
         {
             name: 'Last Name',
             type: 'text',
             label: 'Last Name',
             required: true
-        }
-    ]
+        },
+
+    ],
+    hooks: {
+        afterChange: [(args)=>{
+            console.log(args);
+        }],
+        beforeRead: [(args) =>{
+            console.log(args);
+        }]
+
+    }
+
 }
 
 export default Customers;

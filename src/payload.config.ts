@@ -2,6 +2,7 @@ import path from 'path';
 import { buildConfig } from 'payload/config';
 import Users from './collections/Users';
 import Customers from './collections/Customers';
+import Pages from './collections/Pages'
 
 
 
@@ -15,33 +16,34 @@ export default buildConfig({
 
   collections: [
     Customers,
+    Pages,
     Users,
-    {
-      slug: 'pages',
-      fields: [
-        {
-          name: 'title',
-          type: 'text',
-          required: true,
-        },
-        {
-          name: 'content',
-          type: 'richText',
-          required: true,
-        },
-        {
-          name: 'nav',
-          type: 'array',
-          fields: [
-            {
-              name: 'page',
-              type: 'relationship',
-              relationTo: 'pages',
-            },
-          ],
-        }
-      ],
-    }
+    // {
+    //   slug: 'pages',
+    //   fields: [
+    //     {
+    //       name: 'title',
+    //       type: 'text',
+    //       required: true,
+    //     },
+    //     {
+    //       name: 'content',
+    //       type: 'richText',
+    //       required: true,
+    //     },
+    //     {
+    //       name: 'nav',
+    //       type: 'array',
+    //       fields: [
+    //         {
+    //           name: 'page',
+    //           type: 'relationship',
+    //           relationTo: 'pages',
+    //         },
+    //       ],
+    //     }
+    //   ],
+    // }
   ],
   globals: [
     {
