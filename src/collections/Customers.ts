@@ -4,6 +4,9 @@ import { selfOrAdmin } from '../access/selfOrAdmin';
 const Customers: CollectionConfig = {
     slug: 'customers',
     auth: true,
+    admin: {
+        useAsTitle: 'First Name'
+      },
     access: {
         create: () => true,
         read:selfOrAdmin,
@@ -35,10 +38,10 @@ const Customers: CollectionConfig = {
     ],
     hooks: {
         afterChange: [(args)=>{
-            console.log(args);
+            // console.log(args);
         }],
         beforeRead: [(args) =>{
-            console.log(args);
+            // console.log(args);
         }]
 
     }
