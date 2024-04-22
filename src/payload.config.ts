@@ -2,7 +2,8 @@ import path from 'path';
 import { buildConfig } from 'payload/config';
 import Users from './collections/Users';
 import Customers from './collections/Customers';
-import Pages from './collections/Pages'
+import FacultyMembers from './collections/FacultyMembers'
+import FacultyMedias from './collections/media/FacultyMedias';
 
 
 
@@ -16,34 +17,9 @@ export default buildConfig({
 
   collections: [
     Customers,
-    Pages,
+    FacultyMembers,
     Users,
-    // {
-    //   slug: 'pages',
-    //   fields: [
-    //     {
-    //       name: 'title',
-    //       type: 'text',
-    //       required: true,
-    //     },
-    //     {
-    //       name: 'content',
-    //       type: 'richText',
-    //       required: true,
-    //     },
-    //     {
-    //       name: 'nav',
-    //       type: 'array',
-    //       fields: [
-    //         {
-    //           name: 'page',
-    //           type: 'relationship',
-    //           relationTo: 'pages',
-    //         },
-    //       ],
-    //     }
-    //   ],
-    // }
+    FacultyMedias
   ],
   globals: [
     {
@@ -56,22 +32,7 @@ export default buildConfig({
             {
               name: 'page',
               type: 'relationship',
-              relationTo: 'pages',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      slug: 'header1',
-      fields: [
-        {
-          name: 'nav1',
-          type: 'array',
-          fields: [
-            {
-              name: 'page',
-              type: 'text',
+              relationTo: 'faculty-members',
             },
           ],
         },
