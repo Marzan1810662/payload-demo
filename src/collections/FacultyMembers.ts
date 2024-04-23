@@ -1,6 +1,5 @@
 import { CollectionConfig } from 'payload/types'
-import ImageWaringLabelStatic from '../components/Text/ImageWaringLabelStatic'
-
+import ImageWarningLabelStatic from '../components/Text/ImageWarningLabelStatic'
 
 
 export const FacultyMembers: CollectionConfig = {
@@ -16,12 +15,6 @@ export const FacultyMembers: CollectionConfig = {
     labels: {
         singular: 'Faculty Member',
         plural: 'Faculty Members'
-    },
-    upload: {
-        staticURL: '/media',
-        staticDir: 'media',
-        mimeTypes: ['image/*']
-
     },
     fields: [
         {
@@ -95,10 +88,341 @@ export const FacultyMembers: CollectionConfig = {
             type: 'upload',
             relationTo: 'faculty-media',
             admin: {
-                description: ImageWaringLabelStatic('W:H=1:1'),
+                description: ImageWarningLabelStatic('W:H=1:1'),
 
             }
         },
+        {
+            label: 'Professonal Links',
+            type: 'collapsible',
+            fields: [
+                {
+                    name: 'google-scholer',
+                    label: 'Google Scholer',
+                    type: 'text'
+                },
+                {
+                    name: 'orchid',
+                    label: 'Orchid',
+                    type: 'text'
+                },
+                {
+                    name: 'linkedin',
+                    label: 'LinkedIn',
+                    type: 'text'
+                }
+            ],
+        },
+        {
+            type: 'tabs',
+            tabs: [
+                {
+                    name: 'about',
+                    label: 'About',
+                    fields: [
+                        {
+                            name: 'ip-ext',
+                            label: 'IP EXT',
+                            type: 'text',
+                            admin: {
+                                placeholder: 'Ext:2130'
+                            }
+                        },
+                        {
+                            label: 'Office Address',
+                            type: 'collapsible',
+                            fields: [
+                                {
+                                    name: 'building',
+                                    label: 'Building',
+                                    type: 'select',
+                                    options: ['Administration Building', 'Main Building', 'DMK Building', 'Jubilee Building']
+                                },
+                                {
+                                    name: ' room-no',
+                                    label: 'Room No.',
+                                    type: 'text',
+                                }
+                            ]
+
+                        },
+                        {
+                            label: 'Private Data',
+                            type: 'collapsible',
+                            fields: [
+                                {
+                                    name: 'phone-number',
+                                    label: 'Phone Number',
+                                    type: 'text',
+                                    admin: {
+                                        placeholder: 'e.g. 01755678232',
+                                        description: 'Login will be required to see this information'
+                                    }
+                                },
+                                {
+                                    name: 'alternative-email',
+                                    label: 'Alternative Email',
+                                    type: 'email',
+                                    admin: {
+                                        description: 'Login will be required to see this information'
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            name: 'bio',
+                            label: 'Bio',
+                            type: 'richText',
+                            admin: {
+                                description: 'character left '
+                            }
+                        }
+                    ]
+                },
+                {
+                    name: 'experience',
+                    label: 'Experience',
+                    fields: [
+                        {
+                            name: 'experience',
+                            label: 'Experience',
+                            type: 'array',
+                            fields: [
+                                {
+                                    name: 'designation',
+                                    label: 'Designation',
+                                    type: 'text'
+                                },
+                                {
+                                    name: 'emploment-type',
+                                    label: 'Employment Type',
+                                    type: 'text'
+                                },
+                                {
+                                    name: 'company-name',
+                                    label: 'Company Name',
+                                    type: 'text'
+                                },
+                                {
+                                    name: 'start-date',
+                                    label: 'Start Date',
+                                    type: 'text',
+                                    admin: {
+                                        placeholder: 'e.g. January, 2023'
+                                    }
+                                },
+                                {
+                                    name: 'end-date',
+                                    label: 'End Date',
+                                    type: 'text',
+                                    admin: {
+                                        placeholder: 'e.g. January, 2023'
+                                    }
+                                },
+                                {
+                                    name: 'about-work',
+                                    label: 'About Work',
+                                    type: 'richText',
+                                    admin:
+                                    {
+                                        description: 'characters'
+                                        //     description: (a: any) : string=> {
+                                        //         if (a){
+                                        //             return a.value[0].children[0].text 
+                                        //         }
+                                        //         else{
+                                        //             return 'kjhkjh'
+                                        //         }
+                                        //     } 
+                                        // }
+
+                                    }
+                                }
+                            ]
+
+                        },
+                        {
+                            name: 'award',
+                            label: 'Award',
+                            type: 'array',
+                            fields: [
+                                {
+                                    name: 'title-of-the-award',
+                                    label: 'Title of the Award',
+                                    type: 'text'
+                                },
+                                {
+                                    name: 'organization-name',
+                                    label: 'Organization Name',
+                                    type: 'text'
+                                },
+                                {
+                                    name: 'issued-date',
+                                    label: 'Issued Date',
+                                    type: 'text'
+                                },
+                                {
+                                    name: 'about',
+                                    label: 'About',
+                                    type: 'richText',
+                                    admin: {
+                                        description: 'Max 1000 characters. | Characters: '
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name: 'education',
+                    label: 'Education',
+                    fields: [
+                        {
+                            name: 'education',
+                            label: 'Education',
+                            admin: {
+                                description: 'Education',
+                            },
+                            type: 'array',
+                            fields: [
+                                {
+                                    name: 'degree-title',
+                                    label: 'Degree Title',
+                                    type: 'text',
+                                    admin: {
+                                        placeholder: 'Eg:Bachelor | Master | PhD'
+                                    }
+                                },
+                                {
+                                    name: 'major-field',
+                                    label: 'Major Field',
+                                    type: 'text',
+                                    admin: {
+                                        placeholder: 'Eg:Computer Science | Mathematics'
+                                    }
+                                },
+                                {
+                                    name: 'institution',
+                                    label: 'Institution',
+                                    type: 'text',
+                                    admin: {
+                                        placeholder: 'Eg:BIndependent University, Bangladesh'
+                                    }
+                                },
+                                {
+                                    name: 'country',
+                                    label: 'Country',
+                                    type: 'text',
+                                    admin: {
+                                        placeholder: 'Eg:Bangladesh | USA | UK'
+                                    }
+                                },
+                                {
+                                    name: 'year',
+                                    label: 'Year',
+                                    type: 'text',
+                                },
+                                {
+                                    name: 'about',
+                                    label: 'About',
+                                    type: 'richText',
+                                    admin: {
+                                        description: 'Max 1000 characters. | characters: 0'
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            name: 'certification',
+                            label: 'Certification',
+                            type: 'array',
+                            fields: [
+                                {
+                                    name: 'title-certification',
+                                    label: 'Title of the Certification',
+                                    type: 'text'
+                                },
+                                {
+                                    name: 'certifying-organization',
+                                    label: 'Certifying Organization',
+                                    type: 'text'
+                                },
+                                {
+                                    name: 'issuing-date',
+                                    label: 'Issuing Date',
+                                    type: 'text',
+                                    admin: {
+                                        placeholder: 'e.g. January, 2023'
+                                    }
+                                },
+                                {
+                                    name: 'expiration-date',
+                                    label: 'Expiration Date',
+                                    type: 'text',
+                                    admin: {
+                                        placeholder: 'e.g. January, 2023'
+                                    }
+                                },
+                                {
+                                    name: 'credential-id',
+                                    label: 'Credential ID',
+                                    type: 'text'
+                                },
+                                {
+                                    name: 'credential-url',
+                                    label: 'Credential URL',
+                                    type: 'text'
+                                },
+                                {
+                                    name: 'about',
+                                    label: 'About',
+                                    type: 'richText',
+                                    admin: {
+                                        description: 'Max 1000 characters. | Characeters:0'
+                                    }
+                                }
+                            ]
+                        },
+                    ]
+                },
+                {
+                    name: 'teaching',
+                    label: 'Teaching',
+                    fields: [
+                        {
+                            name: 'visiting-hour',
+                            label: 'Visiting Hour',
+                            type: 'array',
+                            fields: [
+                                {
+                                    name: 'day',
+                                    label: 'Day',
+                                    type: 'select',
+                                    options: ['Satureday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+
+                                },
+                                {
+                                    name: 'time-slots',
+                                    label: 'Time Slots',
+                                    type: 'array',
+                                    fields:[
+                                        {
+                                            name: 'time-slot',
+                                            label:'Time Slot',
+                                            type: 'text',
+                                            admin:{
+                                                placeholder: 'e.g. 10.00 AM - 12.00 PM'
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+
+                }
+            ]
+        }
     ]
 
 

@@ -1,8 +1,8 @@
 import * as React from 'react';
-const ImageWaringLabelStatic =
+const ImageWarningLabelStatic =
   (size: string): React.FC<any> =>
   obj => {
     return <h3 style={{ color: 'red' }}>Please use image ratio: {size}</h3>;
   };
 
-export default ImageWaringLabelStatic;
+export default ImageWarningLabelStatic;
