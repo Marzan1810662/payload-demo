@@ -1,5 +1,13 @@
 import { CollectionConfig } from 'payload/types'
 import ImageWarningLabelStatic from '../components/Text/ImageWarningLabelStatic'
+import { Journal } from '../blocks/publication/Journal'
+import { Patent } from '../blocks/publication/Patent'
+import { Thesis } from '../blocks/publication/Thesis'
+import { Book } from '../blocks/publication/Book'
+import { Chapter } from '../blocks/publication/Chapter'
+import { Conference } from '../blocks/publication/Conference'
+import { CourtCase } from '../blocks/publication/CourtCase'
+import { Other } from '../blocks/publication/Other'
 
 
 export const FacultyMembers: CollectionConfig = {
@@ -405,12 +413,12 @@ export const FacultyMembers: CollectionConfig = {
                                     name: 'time-slots',
                                     label: 'Time Slots',
                                     type: 'array',
-                                    fields:[
+                                    fields: [
                                         {
                                             name: 'time-slot',
-                                            label:'Time Slot',
+                                            label: 'Time Slot',
                                             type: 'text',
-                                            admin:{
+                                            admin: {
                                                 placeholder: 'e.g. 10.00 AM - 12.00 PM'
                                             }
                                         }
@@ -420,6 +428,49 @@ export const FacultyMembers: CollectionConfig = {
                         }
                     ]
 
+                },
+                {
+                    name: 'projects',
+                    label: 'Projects',
+                    fields: [
+                        {
+                            name: 'projects',
+                            label: 'Projects',
+                            type: 'select',
+                            options: ['dummy project 01', 'dummy project 02', 'dummy project 03', 'dummy projects 04']
+                        }
+                    ]
+                },
+                {
+                    name: 'publications',
+                    label: 'Publications',
+                    fields: [
+                        {
+                            name: 'update-publication-data',
+                            label: 'Update Data',
+                            type: 'checkbox',
+                            admin: {
+                                description: 'Check this box to update the data from Google Scholar.If you have not added your Google Scholar ID, please add it first.And if the Data is updated, please uncheck this box.'
+                            }
+
+                        },
+                        {
+                            name: 'publication',
+                            label: 'Publication',
+                            type: 'blocks',
+                            blocks: [
+                                Journal,
+                                Patent,
+                                Thesis,
+                                Book,
+                                Chapter,
+                                Conference,
+                                CourtCase,
+                                Other
+                            ]
+
+                        }
+                    ]
                 }
             ]
         }
