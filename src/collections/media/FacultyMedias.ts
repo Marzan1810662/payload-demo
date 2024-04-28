@@ -1,6 +1,6 @@
 import test from "node:test";
 import { CollectionConfig } from "payload/types";
-
+import path from "path";
 const FacultyMedias: CollectionConfig ={
     slug: 'faculty-media',
     admin:{
@@ -8,7 +8,7 @@ const FacultyMedias: CollectionConfig ={
     },
     upload: {
         staticURL:'/media',
-        staticDir: 'media',
+        staticDir: path.resolve('public', 'media'),
         mimeTypes: ['image/*']
     },
     fields:[
@@ -18,7 +18,7 @@ const FacultyMedias: CollectionConfig ={
         }
     ]
     
-
+    
 }
 
 export default FacultyMedias

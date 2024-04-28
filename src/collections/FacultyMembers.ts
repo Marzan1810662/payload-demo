@@ -14,11 +14,15 @@ export const FacultyMembers: CollectionConfig = {
     slug: 'faculty-members',
     admin: {
         useAsTitle: 'name',
-        defaultColumns: ['name', 'departmrentName', 'facultyEmail', 'priority'],
+        // defaultColumns: ['name', 'department', 'facultyEmail', 'priority'],
         pagination: {
             defaultLimit: 5,
             limits: [10, 20]
         }
+    },
+    versions: {
+        drafts: true,
+        maxPerDoc: 5
     },
     labels: {
         singular: 'Faculty Member',
@@ -30,7 +34,6 @@ export const FacultyMembers: CollectionConfig = {
             label: 'Name',
             type: 'text',
             required: true,
-
         },
         {
             name: 'alternative-name',
