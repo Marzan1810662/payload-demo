@@ -22,7 +22,24 @@ export const Other: Block = {
             label: 'Publication Date',
             type: 'text',
         },
-
+        {
+            name: 'source',
+            label: 'Source',
+            type: 'text'
+        },
+        {
+            name: 'report-number',
+            label: 'Report Number',
+            type: 'text'
+        },
+        {
+            name: 'description',
+            label: 'Description',
+            type: 'richText',
+            admin: {
+                description: 'No Character Limit | Characters:0'
+            }
+        },
         {
             name: 'link-to-source',
             label: 'Link To Source',

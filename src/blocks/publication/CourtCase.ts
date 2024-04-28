@@ -13,16 +13,28 @@ export const CourtCase: Block = {
             type: 'text',
         },
         {
-            name: 'authors',
-            label: 'Authors',
+            name: 'court',
+            label: 'Court',
             type: 'text',
         },
         {
-            name: 'publication-date',
-            label: 'Publication Date',
+            name: 'reporter',
+            label: 'Reporter',
             type: 'text',
         },
-
+        {
+            name: 'docket-id',
+            label: 'Docket Id',
+            type: 'text',
+        },
+        {
+            name: 'description',
+            label: 'Description',
+            type: 'richText',
+            admin: {
+                description: 'No Character Limit | Characters:0'
+            }
+        },
         {
             name: 'link-to-source',
             label: 'Link To Source',

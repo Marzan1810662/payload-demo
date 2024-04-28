@@ -22,7 +22,39 @@ export const Conference: Block = {
             label: 'Publication Date',
             type: 'text',
         },
-
+        {
+            name: 'conderence',
+            label: 'Conference',
+            type: 'text'
+        },
+        {
+            name: 'volume',
+            label: 'Volume',
+            type: 'text'
+        },
+        {
+            name: 'issue',
+            label: 'Issue',
+            type: 'text'
+        },
+        {
+            name: 'pages',
+            label: 'Pages',
+            type: 'text'
+        },
+        {
+            name: 'publisher',
+            label: 'publisher',
+            type: 'text'
+        },
+        {
+            name: 'description',
+            label: 'Description',
+            type: 'richText',
+            admin: {
+                description: 'No Character Limit | Characters:0'
+            }
+        },
         {
             name: 'link-to-source',
             label: 'Link To Source',

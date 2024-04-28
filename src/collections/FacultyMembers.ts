@@ -471,6 +471,63 @@ export const FacultyMembers: CollectionConfig = {
 
                         }
                     ]
+                },
+                {
+                    name: 'view-card',
+                    label: 'View Card',
+                    fields: [
+                        {
+                            name: 'highest-education',
+                            label: 'Highest Education',
+                            type: 'text'
+                        },
+                        {
+                            name: 'area-experience',
+                            label: 'Area of Experience',
+                            type: 'richText',
+                            admin:{
+                                description: 'Max 1000 characters. | Characters:0'
+                            }
+                        },
+                        {
+                            name: 'total-citations',
+                            label: 'Total Citations',
+                            type: 'text'
+                        },
+                        {
+                            name: 'total-citations-subtitle',
+                            label: 'Total Citations Subtitle',
+                            type: 'text'
+                        },
+                        {
+                            name: 'h-index',
+                            label: 'H-Index',
+                            type: 'text'
+                        },
+                        {
+                            name: 'h-index-subtitle',
+                            label: 'H-Index Subtitle',
+                            type: 'text'
+                        },
+                        {
+                            name: 'i-index',
+                            label: 'I-Index',
+                            type: 'text'
+                        },
+                        {
+                            name: 'i-index-subtitle',
+                            label: 'I-Index Subtitle',
+                            type: 'text'
+                        },
+                        {
+                            name: 'update-data',
+                            label: 'Update Data',
+                            type: 'checkbox',
+                            admin:{
+                                description: 'Check this box to update the data from Google Scholar.If you have not added your Google Scholar ID, please add it first.And if the Data is updated, please uncheck this box.'
+                            }
+                        }
+                    ]
                 }
             ]
         }
