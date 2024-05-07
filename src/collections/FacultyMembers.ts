@@ -1,4 +1,4 @@
-import { CollectionConfig } from 'payload/types'
+import { CollectionBeforeValidateHook, CollectionConfig } from 'payload/types'
 import ImageWarningLabelStatic from '../components/Text/ImageWarningLabelStatic'
 import { Journal } from '../blocks/publication/Journal'
 import { Patent } from '../blocks/publication/Patent'
@@ -8,7 +8,6 @@ import { Chapter } from '../blocks/publication/Chapter'
 import { Conference } from '../blocks/publication/Conference'
 import { CourtCase } from '../blocks/publication/CourtCase'
 import { Other } from '../blocks/publication/Other'
-import { equal } from 'node:assert'
 
 
 export const FacultyMembers: CollectionConfig = {
@@ -26,7 +25,7 @@ export const FacultyMembers: CollectionConfig = {
             }
         },
         read: (args) => {
-            console.log(args);
+            // console.log(args);
             return true
             // return {
             //     department: {
@@ -43,8 +42,8 @@ export const FacultyMembers: CollectionConfig = {
             limits: [10, 20]
         },
         preview: (doc, args) => {
-            console.log(doc);
-            console.log(args);
+            // console.log(doc);
+            // console.log(args);
             return `https://bigbird.com/preview/posts/${doc.slug}?locale=${args.locale}`
         }
     },
@@ -55,6 +54,33 @@ export const FacultyMembers: CollectionConfig = {
     labels: {
         singular: 'Faculty Member',
         plural: 'Faculty Members'
+    },
+    hooks: {
+        // beforeOperation:[
+        //     ({args,operation})=>{
+        //         console.log('args:---------------------------------',args);
+        //         console.log(`${operation}`);
+        //         if(operation === 'create'){
+        //             args.data.lastEdited = args.data.createdBy;
+        //         }
+        //     }
+        // ],
+        beforeValidate: [
+            ({ data, req, operation, originalDoc }) => {
+                // console.log(originalDoc);
+                // console.log(req);
+                // console.log(operation);
+                // console.log(data);
+                if (data) {
+                    const fullname = data.name;
+                    data.name = fullname.toUpperCase()
+                }
+                if (operation == 'create') {
+                    if (data) data.position = 'N/A'
+                }
+                return data
+            }
+        ]
     },
     fields: [
         {
@@ -69,8 +95,27 @@ export const FacultyMembers: CollectionConfig = {
             name: 'priority',
             label: 'Priority',
             type: 'number',
+            min: 0,
             admin: {
                 position: 'sidebar',
+            },
+            hooks: {
+                afterChange: [
+                    (args) => {
+                        if (args.operation == 'update') {
+
+                            if (! args.previousValue){
+                                if (args.data)
+                                args.data.priority = 0
+                            console.log(args.data);
+                            }
+                        }
+                        if (args.operation == 'create'){
+
+                            console.log(args);
+                        }
+                    }
+                ]
             }
         },
         {
