@@ -8,16 +8,44 @@ import { Chapter } from '../blocks/publication/Chapter'
 import { Conference } from '../blocks/publication/Conference'
 import { CourtCase } from '../blocks/publication/CourtCase'
 import { Other } from '../blocks/publication/Other'
+import { equal } from 'node:assert'
 
 
 export const FacultyMembers: CollectionConfig = {
     slug: 'faculty-members',
+    access: {
+        create: (args) => {
+            const { req } = args
+            const { collection } = req.user
+            // console.log(collection);
+            if (collection == 'users') {
+                return true
+            }
+            else {
+                return false
+            }
+        },
+        read: (args) => {
+            console.log(args);
+            return true
+            // return {
+            //     department: {
+            //         equals: 'EEE'
+            //     }
+            // }
+        },
+    },
     admin: {
         useAsTitle: 'name',
-        // defaultColumns: ['name', 'department', 'facultyEmail', 'priority'],
+        defaultColumns: ['name', 'department', 'facultyEmail', 'priority'],
         pagination: {
             defaultLimit: 5,
             limits: [10, 20]
+        },
+        preview: (doc, args) => {
+            console.log(doc);
+            console.log(args);
+            return `https://bigbird.com/preview/posts/${doc.slug}?locale=${args.locale}`
         }
     },
     versions: {
@@ -29,6 +57,22 @@ export const FacultyMembers: CollectionConfig = {
         plural: 'Faculty Members'
     },
     fields: [
+        {
+            name: 'last-edited',
+            type: 'relationship',
+            relationTo: 'users',
+            admin: {
+                description: 'Last edited by',
+                position: 'sidebar',
+            }
+        }, {
+            name: 'priority',
+            label: 'Priority',
+            type: 'number',
+            admin: {
+                position: 'sidebar',
+            }
+        },
         {
             name: 'name',
             label: 'Name',
@@ -488,7 +532,7 @@ export const FacultyMembers: CollectionConfig = {
                             name: 'area-experience',
                             label: 'Area of Experience',
                             type: 'richText',
-                            admin:{
+                            admin: {
                                 description: 'Max 1000 characters. | Characters:0'
                             }
                         },
@@ -526,7 +570,7 @@ export const FacultyMembers: CollectionConfig = {
                             name: 'update-data',
                             label: 'Update Data',
                             type: 'checkbox',
-                            admin:{
+                            admin: {
                                 description: 'Check this box to update the data from Google Scholar.If you have not added your Google Scholar ID, please add it first.And if the Data is updated, please uncheck this box.'
                             }
                         }

@@ -17,8 +17,6 @@ const FacultyMedias: CollectionConfig ={
             type: 'text'
         }
     ]
-    
-    
 }
 
 export default FacultyMedias
