@@ -1,7 +1,7 @@
 import path from 'path';
 import { buildConfig } from 'payload/config';
 import Users from './collections/Users';
-import Customers from './collections/Customers';
+import Staffs from './collections/staffs';
 import FacultyMembers from './collections/FacultyMembers'
 import FacultyMedias from './collections/media/FacultyMedias';
 
@@ -16,7 +16,7 @@ export default buildConfig({
   cors: ['http://localhost:3000'],
 
   collections: [
-    Customers,
+    Staffs,
     FacultyMembers,
     Users,
     FacultyMedias

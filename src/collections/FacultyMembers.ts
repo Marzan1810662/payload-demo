@@ -80,6 +80,11 @@ export const FacultyMembers: CollectionConfig = {
                 }
                 return data
             }
+        ],
+        beforeChange: [
+            (args) => {
+                console.log(args);
+            }
         ]
     },
     fields: [
@@ -102,18 +107,22 @@ export const FacultyMembers: CollectionConfig = {
             hooks: {
                 afterChange: [
                     (args) => {
+                        // console.log(args);
                         if (args.operation == 'update') {
-
-                            if (! args.previousValue){
-                                if (args.data)
-                                args.data.priority = 0
-                            console.log(args.data);
+                            if (!args.previousValue) {
+                                // if (args.data)
+                                args.value = -1
+                                // console.log('args.data -->', args.data);
+                                // console.log('args.originalDoc -->', args.originalDoc);
                             }
                         }
-                        if (args.operation == 'create'){
-
-                            console.log(args);
+                        if (args.operation == 'create') {
+                            if (!args.previousValue) {
+                                if (args.data) args.data.priority = -2
+                                // console.log(args.data);
+                            }
                         }
+                        return args.value
                     }
                 ]
             }
