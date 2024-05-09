@@ -3,13 +3,23 @@ import { Access } from "payload/config";
 
 export const selfOrAdmin: Access = (args) => {
     // console.log(` selfOrAdmin: ${user} }}`);
-    if (args.req.user?.collection === 'users') {
-        return true
-    }
+    // if (args.req.user?.collection === 'users') {
+    //     return true
+    // }
+    console.log(`Written by ${args.req?.user.email}`);
     return {
-        id: {
-            equals: args.req.user?.id
-        }
+        or: [
+            {
+                attribution: {
+                    equals: `Written by ${args.req?.user.email}`
+                }
+            },
+            // {
+            //     id: {
+            //         equals: args.req?.user.id
+            //     }
+            // }
+        ]
     }
-    
+
 }

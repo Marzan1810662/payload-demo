@@ -12,6 +12,7 @@ const Users: CollectionConfig = {
     useAsTitle: 'name',
     defaultColumns: ['number','name','email',],
     group: 'Admin',
+    
   },
 
   fields: [

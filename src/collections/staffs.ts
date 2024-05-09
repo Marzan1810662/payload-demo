@@ -2,14 +2,14 @@ import { CollectionConfig } from 'payload/types'
 import { Field } from 'payload/types';
 import { selfOrAdmin } from '../access/selfOrAdmin';
 
-const translation: { [k: string]: string } = {
+const translation: { [k: string]: string } /*index signature*/ = {
     en: 'Written by',
     es: 'Escrito por'
 }
 
 const Staffs: CollectionConfig = {
     slug: 'staffs',
-    // auth: true,
+    auth: true,
     admin: {
         useAsTitle: 'First Name'
     },
