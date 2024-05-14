@@ -6,7 +6,7 @@ export const selfOrAdmin: Access = (args) => {
     // if (args.req.user?.collection === 'users') {
     //     return true
     // }
-    console.log(`Written by ${args.req?.user.email}`);
+    // console.log(`Written by ${args.req?.user.email}`);
     return {
         or: [
             {

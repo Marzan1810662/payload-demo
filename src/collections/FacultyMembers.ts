@@ -8,6 +8,8 @@ import { Chapter } from '../blocks/publication/Chapter'
 import { Conference } from '../blocks/publication/Conference'
 import { CourtCase } from '../blocks/publication/CourtCase'
 import { Other } from '../blocks/publication/Other'
+import payload from 'payload';
+import { errorHandler } from '../errorHandle'
 
 
 export const FacultyMembers: CollectionConfig = {
@@ -631,6 +633,41 @@ export const FacultyMembers: CollectionConfig = {
                     ]
                 }
             ]
+        }
+    ],
+    endpoints: [
+        {
+            path: '/all',
+            method: 'get',
+            handler: errorHandler(async (req:any, res:any, next:any) => {
+                const facultyMembers = await payload.find({
+                    collection : 'faculty-memberss'
+                })
+                
+                if (facultyMembers){
+                    const setsFaculty= facultyMembers.docs.filter(facultyMember => facultyMember.school === 'SETS')
+                    // console.log(facultyMembers);
+                    res.json(setsFaculty)
+                }
+                else{
+                    res.send('Not Found')
+                }
+
+            })
+        },
+        {
+            path: '/:id',
+            method: 'get',
+            handler: async (req, res, next) => {
+                const {id} = req.params
+                const facultyMember = await payload.findByID({
+                    collection : 'faculty-members',
+                    id: id
+                })
+            
+                // console.log(facultyMembers);
+                res.json(facultyMember)
+            }
         }
     ]
 

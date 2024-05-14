@@ -40,7 +40,15 @@ export default buildConfig({
       ],
     },
   ],
-
+  endpoints: [
+    {
+      path: '/about',
+      method: 'get',
+      handler: async (req: any, res:any,next:any) => {
+        res.send('jhkjhkl');
+      }
+    }
+  ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
