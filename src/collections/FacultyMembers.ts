@@ -10,6 +10,7 @@ import { CourtCase } from '../blocks/publication/CourtCase'
 import { Other } from '../blocks/publication/Other'
 import payload from 'payload';
 import { errorHandler } from '../errorHandle'
+import { richTextContent } from '../richTextContent'
 
 
 export const FacultyMembers: CollectionConfig = {
@@ -85,7 +86,7 @@ export const FacultyMembers: CollectionConfig = {
         ],
         beforeChange: [
             (args) => {
-                console.log(args);
+                // console.log(args);
             }
         ]
     },
@@ -98,7 +99,8 @@ export const FacultyMembers: CollectionConfig = {
                 description: 'Last edited by',
                 position: 'sidebar',
             }
-        }, {
+        },
+        {
             name: 'priority',
             label: 'Priority',
             type: 'number',
@@ -195,7 +197,7 @@ export const FacultyMembers: CollectionConfig = {
         },
         {
             name: 'profile-picture',
-            label: 'Profile Prictire',
+            label: 'Profile Picture',
             type: 'upload',
             relationTo: 'faculty-media',
             admin: {
@@ -285,7 +287,30 @@ export const FacultyMembers: CollectionConfig = {
                             label: 'Bio',
                             type: 'richText',
                             admin: {
-                                description: 'character left '
+                                // description: 'character left '
+                                /* description: (slateObj: any) => {
+                                    if (slateObj?.value) {
+                                        console.log(slateObj?.value)
+                                        // slateObj?.value[0]?.children?.forEach((child: any,idx:number) => {
+                                        //     console.log(idx,child);
+                                        // });
+
+                                        return ''
+                                    }
+                                    else return 'character left'
+                                } */
+                                description: (slateObj: any) => {
+                                    const content = richTextContent(slateObj?.value)
+                                    console.log(content.length);
+                                    if (content) {
+                                        return `No Character Limit | characters: ${content?.length}`
+                                    }
+                                    else {
+                                        return `No Character Limit | characters: 0`
+                                    }
+                                    
+                                }
+
                             }
                         }
                     ]
@@ -637,38 +662,39 @@ export const FacultyMembers: CollectionConfig = {
     ],
     endpoints: [
         {
-            path: '/all',
+            path: '/sets-faculty',
             method: 'get',
-            handler: errorHandler(async (req:any, res:any, next:any) => {
+            handler: errorHandler(async (req: any, res: any, next: any) => { //errorHandler is a higher order function
                 const facultyMembers = await payload.find({
-                    collection : 'faculty-memberss'
+                    collection: 'faculty-memberss'
                 })
-                
-                if (facultyMembers){
-                    const setsFaculty= facultyMembers.docs.filter(facultyMember => facultyMember.school === 'SETS')
+
+                if (facultyMembers) {
+                    const setsFaculty = facultyMembers.docs.filter(facultyMember => facultyMember.school === 'SETS')
                     // console.log(facultyMembers);
                     res.json(setsFaculty)
                 }
-                else{
+                else {
                     res.send('Not Found')
                 }
 
             })
         },
-        {
-            path: '/:id',
-            method: 'get',
-            handler: async (req, res, next) => {
-                const {id} = req.params
-                const facultyMember = await payload.findByID({
-                    collection : 'faculty-members',
-                    id: id
-                })
-            
-                // console.log(facultyMembers);
-                res.json(facultyMember)
-            }
-        }
+        // {
+        //     path: '/:id',
+        //     method: 'get',
+        //     handler: async (req, res, next) => {
+        //         const { id } = req.params
+        //         // const facultyMember = await payload.findByID({
+        //         //     collection: 'faculty-members',
+        //         //     id: id
+        //         // })
+
+        //         // console.log(facultyMembers);
+        //         // res.json(facultyMember)
+        //         res.send('ok')
+        //     }
+        // }
     ]
 
 
